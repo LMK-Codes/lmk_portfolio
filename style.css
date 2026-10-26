@@ -1,0 +1,851 @@
+/* =========================================
+   GLOBAL / RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050000;
+    color: #f2eeee;
+    font-family: "Courier New", Courier, monospace;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+::selection {
+    background: #ff1f2d;
+    color: #050000;
+}
+
+
+/* =========================================
+   COLOUR VARIABLES
+========================================= */
+
+:root {
+    --black: #050000;
+    --dark-red: #160000;
+    --red: #ff1f2d;
+    --bright-red: #ff3340;
+    --white: #f2eeee;
+    --grey: #8f8585;
+    --line: rgba(255, 31, 45, 0.25);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 110px;
+
+    padding: 35px 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    z-index: 10;
+}
+
+
+/* Logo */
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.terminal-symbol {
+    color: var(--red);
+    margin-right: 10px;
+}
+
+
+/* Navigation */
+
+.main-nav {
+    display: flex;
+    gap: 65px;
+}
+
+.nav-link {
+    position: relative;
+
+    font-size: 17px;
+    color: var(--white);
+
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--red);
+}
+
+
+/* Red line underneath active page */
+
+.nav-link.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -18px;
+
+    width: 100%;
+    height: 4px;
+
+    background: var(--red);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 48% 52%;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 45% 10%,
+            rgba(120, 0, 0, 0.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            110deg,
+            #030000 0%,
+            #0c0000 45%,
+            #020000 100%
+        );
+}
+
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    left: 35%;
+    bottom: -15%;
+
+    width: 90%;
+    height: 75%;
+
+    opacity: 0.35;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 31, 45, 0.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 31, 45, 0.15) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    transform: perspective(500px) rotateX(60deg);
+
+    transform-origin: center bottom;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    align-self: center;
+
+    padding-left: 75px;
+
+    padding-top: 50px;
+}
+
+
+/* =========================================
+   HERO TITLE
+========================================= */
+
+.hero-title {
+    display: flex;
+    align-items: flex-start;
+
+    margin-bottom: 60px;
+}
+
+.hero-title .prompt {
+    color: var(--red);
+
+    font-size: 48px;
+
+    margin-right: 25px;
+
+    line-height: 1;
+}
+
+.hero-title h1 {
+    font-size: clamp(38px, 4vw, 64px);
+
+    line-height: 1.1;
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+}
+
+
+/* Blinking terminal cursor */
+
+.cursor {
+    color: var(--red);
+
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   DISCIPLINES
+========================================= */
+
+.disciplines {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+    margin-left: 50px;
+
+    margin-bottom: 65px;
+}
+
+.disciplines a {
+    width: fit-content;
+
+    font-size: 20px;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.disciplines a:hover {
+    color: var(--red);
+
+    transform: translateX(8px);
+}
+
+.disciplines .prompt {
+    color: var(--red);
+
+    margin-right: 20px;
+}
+
+
+/* =========================================
+   EXPLORE BUTTON
+========================================= */
+
+.explore-button {
+    display: inline-block;
+
+    margin-left: 50px;
+
+    padding: 22px 35px;
+
+    border: 1px solid var(--red);
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.explore-button span {
+    color: var(--red);
+}
+
+.explore-button:hover {
+    background: var(--red);
+
+    color: #050000;
+
+    box-shadow:
+        0 0 20px rgba(255, 31, 45, 0.35);
+}
+
+.explore-button:hover span {
+    color: #050000;
+}
+
+
+/* =========================================
+   HERO VISUAL
+========================================= */
+
+.hero-visual {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding-right: 55px;
+}
+
+.visual-frame {
+    position: relative;
+
+    width: 90%;
+    height: 72%;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            rgba(255, 31, 45, 0.03),
+            rgba(255, 31, 45, 0.03)
+        );
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HUD CORNERS
+========================================= */
+
+.corner {
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    border-color: var(--red);
+
+    border-style: solid;
+}
+
+.top-left {
+    top: -1px;
+    left: -1px;
+
+    border-width: 3px 0 0 3px;
+}
+
+.top-right {
+    top: -1px;
+    right: -1px;
+
+    border-width: 3px 3px 0 0;
+}
+
+.bottom-left {
+    bottom: -1px;
+    left: -1px;
+
+    border-width: 0 0 3px 3px;
+}
+
+.bottom-right {
+    bottom: -1px;
+    right: -1px;
+
+    border-width: 0 3px 3px 0;
+}
+
+
+/* =========================================
+   VISUAL SCANLINES
+========================================= */
+
+.visual-frame::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 4px,
+            rgba(255, 31, 45, 0.025) 5px
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.hero::after {
+    content: "↓  SCROLL DOWN";
+
+    position: absolute;
+
+    bottom: 40px;
+    left: 65px;
+
+    color: var(--red);
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   WORK SECTION
+========================================= */
+
+.work-section,
+.about-section,
+.process-section,
+.contact-section {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 150px 75px;
+
+    background: #050000;
+
+    border-top: 1px solid var(--line);
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    display: flex;
+
+    align-items: flex-start;
+
+    margin-bottom: 80px;
+}
+
+.section-heading .prompt {
+    color: var(--red);
+
+    font-size: 40px;
+
+    margin-right: 20px;
+}
+
+.section-heading h2 {
+    font-size: 42px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   PROJECT GRID
+========================================= */
+
+.project-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 30px;
+}
+
+.project-card {
+    border: 1px solid var(--line);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--red);
+}
+
+.project-image {
+    height: 350px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #120000,
+            #030000
+        );
+
+    border-bottom: 1px solid var(--line);
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-number {
+    color: var(--red);
+
+    font-size: 14px;
+}
+
+.project-info h3 {
+    margin-top: 10px;
+
+    font-size: 22px;
+}
+
+.project-info p {
+    margin-top: 15px;
+
+    color: var(--grey);
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    max-width: 1100px;
+}
+
+.about-content p {
+    font-size: 20px;
+
+    line-height: 1.8;
+}
+
+.about-details {
+    color: var(--grey);
+}
+
+
+/* =========================================
+   PROCESS
+========================================= */
+
+.process-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 40px;
+}
+
+.process-item {
+    border-top: 1px solid var(--red);
+
+    padding-top: 25px;
+}
+
+.process-number {
+    color: var(--red);
+
+    font-size: 14px;
+}
+
+.process-item h3 {
+    margin: 20px 0;
+
+    font-size: 25px;
+}
+
+.process-item p {
+    color: var(--grey);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact-section p {
+    margin-bottom: 30px;
+
+    color: var(--grey);
+
+    font-size: 20px;
+}
+
+.contact-email {
+    color: var(--red);
+
+    font-size: 28px;
+
+    border-bottom: 1px solid var(--red);
+
+    padding-bottom: 8px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    padding: 40px 75px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--grey);
+}
+
+.social-links {
+    display: flex;
+
+    gap: 35px;
+}
+
+.social-links a {
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--red);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+
+    .site-header {
+        padding: 25px;
+    }
+
+    .main-nav {
+        gap: 25px;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        min-height: 100vh;
+    }
+
+    .hero-content {
+        padding: 150px 35px 80px;
+    }
+
+    .hero-visual {
+        position: absolute;
+
+        inset: 0;
+
+        opacity: 0.25;
+
+        padding: 0;
+    }
+
+    .visual-frame {
+        width: 90%;
+        height: 70%;
+    }
+
+    .hero-title h1 {
+        font-size: 42px;
+    }
+
+    .disciplines {
+        margin-left: 35px;
+    }
+
+    .explore-button {
+        margin-left: 35px;
+    }
+
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .work-section,
+    .about-section,
+    .process-section,
+    .contact-section {
+        padding: 100px 35px;
+    }
+
+    .site-footer {
+        padding: 30px 35px;
+
+        flex-direction: column;
+
+        gap: 25px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .site-header {
+        position: absolute;
+
+        height: auto;
+
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+    .main-nav {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
+
+    .hero-content {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .hero-title .prompt {
+        font-size: 32px;
+
+        margin-right: 12px;
+    }
+
+    .hero-title h1 {
+        font-size: 30px;
+    }
+
+    .disciplines {
+        margin-left: 0;
+
+        gap: 18px;
+    }
+
+    .disciplines a {
+        font-size: 15px;
+    }
+
+    .explore-button {
+        margin-left: 0;
+
+        font-size: 14px;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .section-heading .prompt {
+        font-size: 30px;
+    }
+
+    .contact-email {
+        font-size: 19px;
+    }
+}
